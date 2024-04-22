@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+export const STORAGE_STATE = "./auth/session.json";
 
 /**
  * Read environment variables from file.
@@ -37,16 +38,16 @@ export default defineConfig({
   projects: [
     {
       name: "login",
-      use: { ...devices["Desktop Chrome"] },
+      use: { ...devices["Desktop Chrome"] ,storageState: STORAGE_STATE  },
       testMatch: "**/login.setup.ts", 
+      teardown:"teardown"
     },
     {
-      name: "Logged In tests",
-      use: { ...devices["Desktop Chrome"],  },
-      dependencies: ["login"],
-      testMatch: "**/*.spec.ts",
-     
+      name: "teardown",
+      use: { ...devices["Desktop Chrome"],},
+      testMatch: "**/global.teardown.ts",
     },
+    
     // {
     //   name: 'chromium',
     //   use: { ...devices['Desktop Chrome'] },
