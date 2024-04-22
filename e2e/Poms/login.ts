@@ -9,7 +9,7 @@ export default class LoginPage{
 
       loginAndVerifyUser=async({email,OTP}:{email:string,OTP:string}):Promise<void>=>{
 
-        await this.page.goto("https://app.neetoauth.net/login")
+        await this.page.goto("/")
         await this.page.getByTestId("login-email-text-field").fill(email)
         await this.page.getByTestId("login-submit-button").click()
         
