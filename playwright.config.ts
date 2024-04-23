@@ -38,9 +38,18 @@ export default defineConfig({
   projects: [
     {
       name: "login",
-      use: { ...devices["Desktop Chrome"] ,storageState: STORAGE_STATE  },
+      use: { ...devices["Desktop Chrome"]   },
       testMatch: "**/login.setup.ts", 
-      teardown:"teardown"
+      
+    },
+    
+    {
+      name: "Logged In tests",
+      use: { ...devices["Desktop Chrome"], storageState: STORAGE_STATE},
+      dependencies: ["login"],
+      teardown:"teardown",
+      testMatch: "**/*.spec.ts",
+      
     },
     {
       name: "teardown",
