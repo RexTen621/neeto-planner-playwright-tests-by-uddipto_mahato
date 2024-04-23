@@ -1,5 +1,7 @@
 import { Page } from "playwright";
 import { expect } from "playwright/test";
+import { LOGIN_SELECTORS } from "../Constants/Selectors/loginpageSelector";
+import { LOGIN_TEXTS } from "../Constants/Texts/loginpageTexts";
 
 export default class LoginPage{
     constructor(public page:Page){
@@ -10,16 +12,16 @@ export default class LoginPage{
       loginAndVerifyUser=async({email,OTP}:{email:string,OTP:string}):Promise<void>=>{
 
         await this.page.goto("/")
-        await this.page.getByTestId("login-email-text-field").fill(email)
-        await this.page.getByTestId("login-submit-button").click()
+        await this.page.getByTestId(LOGIN_SELECTORS.emailTextField).fill(email)
+        await this.page.getByTestId(LOGIN_SELECTORS.submitButton).click()
         
-        await this.page.getByTestId("otpinput-otp-number").fill(OTP)
+        await this.page.getByTestId(LOGIN_SELECTORS.otpInputField).fill(OTP)
         
       
-        await expect(this.page.getByTestId("main-header")).toHaveText("Choose your neeto product")
-        await this.page.getByTestId("neetoapp-link-Planner").click()
+        await expect(this.page.getByTestId(LOGIN_SELECTORS.mainHeader)).toHaveText(LOGIN_TEXTS.expectedMainHeader)
+        await this.page.getByTestId(LOGIN_SELECTORS.plannerLink).click()
         await this.page.waitForLoadState("networkidle")
-        await expect(this.page.getByTestId("main-header")).toHaveText("Active Projects")
+        await expect(this.page.getByTestId(LOGIN_SELECTORS.mainHeader)).toHaveText(LOGIN_TEXTS.expectedProjectsHeader)
 
 
 
@@ -31,3 +33,6 @@ export default class LoginPage{
 
     }
 }
+
+
+
