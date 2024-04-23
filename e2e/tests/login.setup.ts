@@ -10,11 +10,9 @@ test.describe("login page",()=>{
     })
 
     test("Should login with OTP",async({page,loginPage})=>{
-<<<<<<< HEAD
-        await page.goto("/")
-        await loginPage.loginAndVerifyUser({email:"cpts9gnqty9-planner-uddipto_mahato-iiit_bhubaneswar@bigbinary.com",OTP:otp})
-=======
->>>>>>> 2-login-to-application
+
+       
+
 
         await test.step("Step 1: login with OTP",async()=>{
             await loginPage.loginAndVerifyUser({

@@ -11,15 +11,13 @@ export default class LoginPage{
 
       loginAndVerifyUser=async({email,OTP}:{email:string,OTP:string}):Promise<void>=>{
 
-<<<<<<< HEAD
+
        
-        await this.page.getByTestId("login-email-text-field").fill(email)
-        await this.page.getByTestId("login-submit-button").click()
-=======
+
         await this.page.goto("/")
         await this.page.getByTestId(LOGIN_SELECTORS.emailTextField).fill(email)
         await this.page.getByTestId(LOGIN_SELECTORS.submitButton).click()
->>>>>>> 2-login-to-application
+
         
         await this.page.getByTestId(LOGIN_SELECTORS.otpInputField).fill(OTP)
         
