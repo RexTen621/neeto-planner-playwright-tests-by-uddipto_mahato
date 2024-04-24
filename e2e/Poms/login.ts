@@ -16,9 +16,12 @@ export default class LoginPage {
         await this.page.getByTestId(LOGIN_SELECTORS.submitButton).click()
 
         await this.page.getByTestId(LOGIN_SELECTORS.otpInputField).fill(otpForLogin)
-        
+
+
         await this.page.waitForTimeout(8000)
-      
+
         await expect(this.page.getByTestId(LOGIN_SELECTORS.mainHeader)).toHaveText(LOGIN_TEXTS.expectedProjectsHeader)
+
+
     }
 }

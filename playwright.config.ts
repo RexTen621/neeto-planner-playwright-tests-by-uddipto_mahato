@@ -31,7 +31,11 @@ export default defineConfig({
       testMatch: "**/login.setup.ts", 
       
     },
-    
+    {
+      name: "teardown",
+      use: { ...devices["Desktop Chrome"],},
+      testMatch: "**/global.teardown.ts",
+    },
     {
       name: "Logged In tests",
       use: { ...devices["Desktop Chrome"], storageState: STORAGE_STATE},
@@ -40,11 +44,7 @@ export default defineConfig({
       testMatch: "**/*.spec.ts",
       
     },
-    {
-      name: "teardown",
-      use: { ...devices["Desktop Chrome"],},
-      testMatch: "**/global.teardown.ts",
-    },
+   
     
 
   ],
