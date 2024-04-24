@@ -19,7 +19,7 @@ export default defineConfig({
    
     trace: 'on-first-retry',
     testIdAttribute: "data-cy",
-    baseURL:"https://app.neetoauth.net/login"
+    baseURL:"https://uddipto-mahato-iiit-bhubaneswar.neetoplanner.net/"
 
   },
 
