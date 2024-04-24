@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+
 export const STORAGE_STATE = "./auth/session.json";
 
 
@@ -19,7 +20,7 @@ export default defineConfig({
    
     trace: 'on-first-retry',
     testIdAttribute: "data-cy",
-    baseURL:"https://app.neetoauth.net/login"
+    baseURL:"https://app.neetoauth.net"
 
   },
 
@@ -34,7 +35,7 @@ export default defineConfig({
     
     {
       name: "Logged In tests",
-      use: { ...devices["Desktop Chrome"], storageState: STORAGE_STATE},
+      use: { ...devices["Desktop Chrome"], storageState:STORAGE_STATE},
       dependencies: ["login"],
       teardown:"teardown",
       testMatch: "**/*.spec.ts",

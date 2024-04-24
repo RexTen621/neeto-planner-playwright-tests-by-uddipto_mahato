@@ -8,8 +8,8 @@ export default class ProjectPage{
     }
 
     addNewProject=async({projectName,projectDescription}:{projectName:string,projectDescription:string}):Promise<void>=>{
-        await this.page.goto("https://uddipto-mahato-iiit-bhubaneswar.neetoplanner.net/dashboard/active")
-        await this.page.waitForLoadState("networkidle")
+        
+       
         await this.page.locator("//button[contains(@class,'neeto-ui-btn neeto-ui-btn--style-primary')]").click()
         await this.page.getByTestId("name-input-field").fill(projectName)
         await this.page.locator("//textarea[@placeholder='Enter description']").fill(projectDescription)

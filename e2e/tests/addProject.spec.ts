@@ -1,5 +1,6 @@
+
 import test from "../Fixtures/testFixtures";
-import { STORAGE_STATE } from "../../playwright.config";
+
 
 import {faker} from "@faker-js/faker"
 
@@ -12,10 +13,11 @@ test.describe("Project Page",()=>{
         newProjectDescription=faker.word.words({count:4})
     })
 
-    test("create a new project",async({page,loginPage,projectPage})=>{
-       
-       
+    test("create a new project",async({page,projectPage})=>{
+        
+        
+        await page.goto("/")
         await projectPage.addNewProject({projectName:newProjectName,projectDescription:newProjectDescription})
-        await page.context().storageState({ path: STORAGE_STATE });
+        
     })
 })
