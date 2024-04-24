@@ -19,7 +19,7 @@ export default class LoginPage {
        
 
 
-        await this.page.waitForTimeout(6000)
+        await this.page.waitForTimeout(8000)
       
         await expect(this.page.getByTestId(LOGIN_SELECTORS.mainHeader)).toHaveText(LOGIN_TEXTS.expectedProjectsHeader)
     }
