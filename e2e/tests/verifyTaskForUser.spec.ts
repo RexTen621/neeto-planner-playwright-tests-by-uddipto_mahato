@@ -1,11 +1,12 @@
 import test from "../Fixtures/testFixtures"
 import { faker } from "@faker-js/faker"
-
+import { expect } from "playwright/test";
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 
-test.describe("Should login and verify task for same user", () => {
+test.describe("Should login and verify task for same user", { serial: true }, () => {
 
     let newProjectName: string
     let newProjectDescription: string
@@ -25,7 +26,7 @@ test.describe("Should login and verify task for same user", () => {
         newUsername=process.env.USER_NAME as string
 
     })
-    test("heading to project page ", async ({ page, projectPage,taskPage }) => {
+    test("heading to project page for creating one task ", async ({ page, projectPage,taskPage }) => {
 
         await test.step("Step 1:Should login and verify", () => page.goto('/'))
 
@@ -33,12 +34,25 @@ test.describe("Should login and verify task for same user", () => {
 
         await test.step("Step 3: Should create a new project and verify", () => projectPage.addNewProject({ projectName: newProjectName, projectDescription: newProjectDescription }))
 
-        await test.step("creating task",()=>projectPage.assignNewTaskInProject({taskName:newTaskName,username:newUsername,taskDescription:newTaskDescription,taskComment:newTaskComment}))
-        
+        await test.step("Step 4:creating task",()=>projectPage.assignNewTaskInProject({taskName:newTaskName,username:newUsername,taskDescription:newTaskDescription,taskComment:newTaskComment}))
 
+        
+        })
+
+    test("creating second task for new project",async({page, projectPage,taskPage})=>{
+        await test.step("Step 1:Should login and verify", () => page.goto('/'))
+        await test.step("Step should go to project page",()=>page.locator("//a[@data-testid='navlink-projects']").click())
+        await test.step("Step 3: Should create a new project and verify", () => projectPage.addNewProject({ projectName: newProjectName, projectDescription: newProjectDescription }))
+        await test.step("Step 4:creating task",()=>projectPage.assignNewTaskInProject({taskName:newTaskName,username:newUsername,taskDescription:newTaskDescription,taskComment:newTaskComment}))
+
+    })  
+    
+    test("verify created project",async({page})=>{
+
+        await test.step("Step 1:Should login and verify", () => page.goto('/'))
+        await page.locator("//a[@data-testid='navlink-tasks']").click()
+        await expect(page.getByTestId("subheader-left")).toHaveText("2 tasks")
 
     })
-    // test("second task",async({page,projectPage,taskPage})=>{
-
-    // })
+    
 })
