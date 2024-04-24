@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-test.describe("Should login and verify task for same user", { serial: true }, () => {
+test.describe("Should login and verify task for same user", () => {
 
     let newProjectName: string
     let newProjectDescription: string
