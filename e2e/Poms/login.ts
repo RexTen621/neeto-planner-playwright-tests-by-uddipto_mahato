@@ -16,7 +16,8 @@ export default class LoginPage {
         await this.page.getByTestId(LOGIN_SELECTORS.submitButton).click()
 
         await this.page.getByTestId(LOGIN_SELECTORS.otpInputField).fill(otpForLogin)
-       
+        
+       await this.page.waitForLoadState("load")
 
 
         await this.page.waitForTimeout(6000)
