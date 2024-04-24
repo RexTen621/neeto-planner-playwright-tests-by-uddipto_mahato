@@ -17,4 +17,6 @@ export default class ProjectPage {
         await this.page.locator(ADD_PROJECT_SELECTORS.submitButtonSelector).click();
         await expect(this.page.getByTestId(ADD_PROJECT_SELECTORS.mainHeaderTestId)).toHaveText(projectName)
     }
+
+   
 }
