@@ -4,8 +4,6 @@ import { ADD_PROJECT_SELECTORS } from "../Constants/Selectors/ProjectPageSelecto
 
 export default class ProjectPage {
 
-
-
     constructor(public page: Page) {
         this.page = page
 
