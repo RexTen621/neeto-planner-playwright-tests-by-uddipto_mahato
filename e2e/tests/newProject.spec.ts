@@ -2,7 +2,7 @@ import test from "../Fixtures/testFixtures"
 import { faker } from "@faker-js/faker"
 
 
-test.describe("Should create a new project",()=>{
+test.describe("Should login and create a new project",()=>{
 
     let newProjectName:string
     let newProjectDescription:string
@@ -15,9 +15,9 @@ test.describe("Should create a new project",()=>{
     })
     test("create a new project",async({page,projectPage})=>{
 
-        await page.goto('/')
+        await test.step("Step 1:Should login and verify",()=> page.goto('/'))
 
-        await projectPage.addNewProject({projectName:newProjectName,projectDescription:newProjectDescription})
+        await test.step("Step 2: Should create a new project and verify",()=>projectPage.addNewProject({projectName:newProjectName,projectDescription:newProjectDescription}))
 
     })
 })

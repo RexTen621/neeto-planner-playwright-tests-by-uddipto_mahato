@@ -1,22 +1,22 @@
 import { Page } from "playwright";
 import { expect } from "playwright/test";
+import { ADD_PROJECT_SELECTORS } from "../Constants/Selectors/ProjectPageSelectors";
 
-export default class ProjectPage{
-    constructor(public page:Page){
-        this.page=page
+export default class ProjectPage {
+
+
+
+    constructor(public page: Page) {
+        this.page = page
 
     }
 
-    addNewProject=async({projectName,projectDescription}:{projectName:string,projectDescription:string}):Promise<void>=>{
+    addNewProject = async ({ projectName, projectDescription }: { projectName: string, projectDescription: string }): Promise<void> => {
 
-        await this.page.goto("https://uddipto-mahato-iiit-bhubaneswar.neetoplanner.net/")
-        
-       
-        await this.page.locator("//button[contains(@class,'neeto-ui-btn neeto-ui-btn--style-primary')]").click()
-        await this.page.getByTestId("name-input-field").fill(projectName)
-        await this.page.locator("//textarea[@placeholder='Enter description']").fill(projectDescription)
-        await this.page.locator("//button[@type='submit']").click()
-        await expect(this.page.getByTestId("main-header")).toHaveText(projectName)
-
+        await this.page.locator(ADD_PROJECT_SELECTORS.addButtonSelector).click();
+        await this.page.getByTestId(ADD_PROJECT_SELECTORS.nameInputFieldTestId).fill(projectName);
+        await this.page.locator(ADD_PROJECT_SELECTORS.descriptionTextareaSelector).fill(projectDescription);
+        await this.page.locator(ADD_PROJECT_SELECTORS.submitButtonSelector).click();
+        await expect(this.page.getByTestId(ADD_PROJECT_SELECTORS.mainHeaderTestId)).toHaveText(projectName)
     }
 }
